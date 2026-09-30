@@ -110,6 +110,13 @@
   background: #7fd0ff;
 }
 
+@media (max-width: 640px) {
+  .time-controls {
+    top: auto;
+    bottom: 5.4rem;
+    left: 1rem;
+  }
+}
 
 .planet-menu {
   position: absolute;
@@ -222,6 +229,15 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (max-width: 640px) {
+  .info-panel {
+    left: 1rem;
+    right: 1rem;
+    max-width: none;
+    top: auto;
+    bottom: 8rem;
+  }
+}
 
 /* ---------- Jammu & Kashmir view ---------- */
 .kashmir-root {
@@ -286,6 +302,13 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
+@media (max-width: 640px) {
+  .kmr-controls {
+    top: auto;
+    bottom: 7rem;
+    left: 1rem;
+  }
+}
 
 .music-toggle {
   position: absolute;
@@ -306,119 +329,10 @@
   accent-color: #ffb23c;
 }
 
-
-/* ---------- Mobile ---------- */
 @media (max-width: 640px) {
-  .hero {
-    padding: 0.55rem 1rem 0.4rem;
-  }
-
-  .hero h1 {
-    font-size: 0.9rem;
-  }
-
-  .hero p {
-    display: none;
-  }
-
-  .hint {
-    display: none;
-  }
-
-  /* compact top bar: time / view controls on the left, music on the right */
-  .time-controls,
-  .kmr-controls,
   .music-toggle {
-    top: 2.3rem;
     bottom: auto;
-    padding: 0.3rem 0.4rem;
-    gap: 0.25rem;
-    border-radius: 10px;
-  }
-
-  .time-controls,
-  .kmr-controls {
-    left: 0.5rem;
-  }
-
-  .music-toggle {
-    right: 0.5rem;
-  }
-
-  .music-toggle input[type='range'] {
-    width: 48px;
-  }
-
-  .time-readout {
-    font-size: 0.7rem;
-    gap: 0.3rem;
-  }
-
-  .time-readout .time-dim {
-    font-size: 0.65rem;
-  }
-
-  .time-buttons {
-    gap: 0.2rem;
-  }
-
-  .time-btn {
-    min-width: 1.6rem;
-    padding: 0.18rem 0.35rem;
-    font-size: 0.7rem;
-    border-radius: 6px;
-  }
-
-  /* bottom menu: one swipeable row instead of a tall wrapped column */
-  .planet-menu {
-    left: 0;
-    right: 0;
-    bottom: 0.4rem;
-    transform: none;
-    max-width: none;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    gap: 0.35rem;
-    padding: 0.35rem 0.5rem;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .planet-menu::-webkit-scrollbar {
-    display: none;
-  }
-
-  .chip {
-    flex-shrink: 0;
-    white-space: nowrap;
-    padding: 0.28rem 0.6rem;
-    font-size: 0.72rem;
-  }
-
-  .info-panel {
-    top: auto;
-    bottom: 3rem;
-    left: 0.5rem;
-    right: 0.5rem;
-    max-width: none;
-    max-height: 38vh;
-    overflow-y: auto;
-    padding: 0.7rem 0.9rem;
-    border-radius: 12px;
-  }
-
-  .info-panel h2 {
-    font-size: 0.95rem;
-    padding-right: 1.5rem;
-  }
-
-  .info-panel p {
-    font-size: 0.8rem;
-  }
-
-  .kmr-pin {
-    font-size: 10px;
-    padding: 1px 7px;
+    top: 5rem;
+    right: 1rem;
   }
 }
