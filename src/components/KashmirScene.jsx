@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Sky, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import PhotoPostcard from './PhotoPostcard'
+import { useResponsiveCamera } from '../utils/useResponsiveCamera'
 import {
   TERRAIN_SIZE,
   UNITS_PER_KM,
@@ -263,6 +264,8 @@ const OVERVIEW_OFFSET = new THREE.Vector3(0, 48, 70)
 const PLACE_OFFSET = new THREE.Vector3(6, 9, 14)
 
 function FlyRig({ selected, controlsRef }) {
+  const zoomOut = useResponsiveCamera({ portraitFov: 65 })
+  const scale = zoomOut > 1 ? 1.15 : 1
   const flying = useRef(true)
   const target = useRef(OVERVIEW_TARGET.clone())
   const camGoal = useRef(OVERVIEW_TARGET.clone().add(OVERVIEW_OFFSET))
@@ -273,13 +276,13 @@ function FlyRig({ selected, controlsRef }) {
       target.current.y += selected.focusY || 0
       camGoal.current
         .copy(target.current)
-        .add(selected.offset ? new THREE.Vector3(...selected.offset) : PLACE_OFFSET)
+        .add((selected.offset ? new THREE.Vector3(...selected.offset) : PLACE_OFFSET.clone()).multiplyScalar(scale))
     } else {
       target.current.copy(OVERVIEW_TARGET)
-      camGoal.current.copy(OVERVIEW_TARGET).add(OVERVIEW_OFFSET)
+      camGoal.current.copy(OVERVIEW_TARGET).add(OVERVIEW_OFFSET.clone().multiplyScalar(scale))
     }
     flying.current = true
-  }, [selected])
+  }, [selected, scale])
 
   useEffect(() => {
     const controls = controlsRef.current

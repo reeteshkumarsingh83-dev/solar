@@ -12,8 +12,10 @@ import Nebula from './Nebula'
 import AsteroidBelt from './AsteroidBelt'
 import TimeKeeper from './TimeKeeper'
 import { planetsData, sunData } from '../data/planets'
+import { useResponsiveCamera } from '../utils/useResponsiveCamera'
 
 function Scene({ selected, onSelect, controlsRef, timeScale, onTick }) {
+  const zoomOut = useResponsiveCamera()
   const angleRefs = useRef(planetsData.map(() => ({ current: Math.random() * Math.PI * 2 })))
 
   const getFocusPosition = useMemo(() => {
@@ -30,9 +32,9 @@ function Scene({ selected, onSelect, controlsRef, timeScale, onTick }) {
 
   const focusDistance = selected
     ? selected.name === 'Sun'
-      ? sunData.size * 3.2
-      : selected.size * 6 + 2
-    : 55
+      ? sunData.size * 3.2 * Math.min(zoomOut, 1.6)
+      : (selected.size * 6 + 2) * Math.min(zoomOut, 1.6)
+    : 55 * zoomOut
 
   return (
     <>
@@ -61,7 +63,7 @@ function Scene({ selected, onSelect, controlsRef, timeScale, onTick }) {
         ref={controlsRef}
         enablePan={false}
         minDistance={4}
-        maxDistance={160}
+        maxDistance={200}
         autoRotate={!selected}
         autoRotateSpeed={0.15}
       />
